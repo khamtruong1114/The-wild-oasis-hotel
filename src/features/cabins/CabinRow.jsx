@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabins } from "../../services/apiCabins";
+import toast from "react-hot-toast";
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -56,14 +57,14 @@ function CabinRow({ cabin }) {
   const { isLoading: isDeleting, mutate } = useMutation({
     mutationFn: deleteCabins, //this is the function that ReactQuery will call, mutate function will be call back function that we can connect to the button
     onSuccess: () => {
-      alert("The cabin was successfully deleted");
+      toast.success("The cabin was successfully deleted");
       // refetching data by invalidating the cache as soon as the mutation is done
       queryClient.invalidateQueries({
         //get queryClient and call invalidate
         queryKey: ["cabins"], // define which query
       });
     },
-    onError: (err) => alert(err.message), //get exactly error from deleteCabin function
+    onError: (err) => toast.error(err.message), //get exactly error from deleteCabin function
   });
 
   return (
