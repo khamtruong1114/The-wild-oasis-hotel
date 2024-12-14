@@ -35,7 +35,7 @@ function CabinTable() {
     error,
     data: cabins,
   } = useQuery({
-    queryKey: ["cabin"], // the data would be read from the cache
+    queryKey: ["cabins"], // the data would be read from the cache
     queryFn: getCabins, //need to return a promise -> this data will be the one stored in the cache
   });
 
