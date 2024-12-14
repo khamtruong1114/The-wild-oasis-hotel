@@ -35,13 +35,14 @@ function CabinTable() {
     error,
     data: cabins,
   } = useQuery({
-    queryKey: ["cabin"],
-    queryFn: getCabins,
+    queryKey: ["cabin"], // the data would be read from the cache
+    queryFn: getCabins, //need to return a promise -> this data will be the one stored in the cache
   });
 
   if (isLoading) return <Spinner />;
 
   return (
+    //role make sure it is clearly showed on browser
     <Table role="table">
       <TableHeader role="row">
         <div></div>
