@@ -1,10 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { createEditCabins, getCabins } from "../../services/apiCabins";
+// import { useQuery } from "@tanstack/react-query";
+// import { createEditCabins, getCabins } from "../../services/apiCabins";
 import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import { useCabins } from "./useCabins";
 import Table from "../../ui/Table";
+import Menus from "../../ui/Menus";
 
 const TableHeader = styled.header`
   display: grid;
@@ -29,20 +30,22 @@ function CabinTable() {
 
   return (
     //role make sure it is clearly showed on browser
-    <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-      <TableHeader role="row">
-        <div></div>
-        <div>Cabin</div>
-        <div>Capacity</div>
-        <div>price</div>
-        <div>Discount</div>
-      </TableHeader>
+    <Menus>
+      <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
+        <TableHeader role="row">
+          <div></div>
+          <div>Cabin</div>
+          <div>Capacity</div>
+          <div>price</div>
+          <div>Discount</div>
+        </TableHeader>
 
-      <Table.Body
-        data={cabins}
-        render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
-      />
-    </Table>
+        <Table.Body
+          data={cabins}
+          render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
+        />
+      </Table>
+    </Menus>
   );
 }
 
